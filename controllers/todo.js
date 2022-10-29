@@ -106,7 +106,6 @@ module.exports.displayAddPage = (req, res, next) => {
         res.render(
             'todo/add_edit', {
                 title: 'Add Item',
-                todo: todoList,
                 userName: req.user ? req.user.username : ''
             }
         )
