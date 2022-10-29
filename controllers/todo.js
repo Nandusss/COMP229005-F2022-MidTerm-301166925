@@ -55,13 +55,6 @@ module.exports.displayEditPage = (req, res, next) => {
                 console.log(err);
                 res.end(err);
             }
-            // if (!req.user) {
-            //     res.render('auth/signin', {
-            //       title: 'Sign In',
-            //       messages: req.flash('error') || req.flash('info')
-            //     });
-            // }
-             
             else 
             {
                 console.log(req.user);
@@ -108,15 +101,6 @@ module.exports.processEditPage = (req, res, next) => {
 // Display add_edit page. Only access if signed in
 module.exports.displayAddPage = (req, res, next) => {
     let todoList = TodoModel();
-
-    // if (!req.user) {
-    //     res.render('auth/signin', {
-    //       title: 'Sign In',
-    //       messages: req.flash('error') || req.flash('info')
-    //     });
-    // } 
-    // else 
-    // {
         console.log(req.user);
         //show the edit view
         res.render(
@@ -159,14 +143,6 @@ module.exports.processAddPage = (req, res, next) => {
 //perform a delete fuction over database if user is signed in
 module.exports.performDelete = (req, res, next) => {
     let id = req.params.id;
-    // if (!req.user) {
-    //     res.render('auth/signin', {
-    //       title: 'Sign In',
-    //       messages: req.flash('error') || req.flash('info')
-    //     });
-    // } 
-    // else 
-    // {
         TodoModel.remove(
             {_id: id}, (err) => {
                 if(err)
