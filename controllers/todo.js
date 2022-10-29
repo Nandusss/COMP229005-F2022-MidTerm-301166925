@@ -37,7 +37,8 @@ module.exports.details = (req, res, next) => {
             //show the edit view
             res.render('todo/details', {
                 title: 'To-Do Details', 
-                todo: todoList
+                todo: todoList,
+                userName: req.user ? req.user.username : ''
             })
         }
     });
@@ -68,7 +69,8 @@ module.exports.displayEditPage = (req, res, next) => {
                 res.render(
                     'todo/add_edit', {
                         title: 'Edit Item', 
-                        todo: todoList
+                        todo: todoList,
+                        userName: req.user ? req.user.username : ''
                     }
                 )
             }
@@ -120,7 +122,8 @@ module.exports.displayAddPage = (req, res, next) => {
         res.render(
             'todo/add_edit', {
                 title: 'Add Item',
-                todo: todoList
+                todo: todoList,
+                userName: req.user ? req.user.username : ''
             }
         )
     // }         
