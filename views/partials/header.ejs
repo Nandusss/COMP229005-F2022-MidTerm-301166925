@@ -14,7 +14,7 @@
   <nav class="navbar fixed-top navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="/images/image_logo.JPG" alt="logo" style="width:40px;">
+        <img src="/images/logo.png" alt="logo" style="width:40px;">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -42,14 +42,23 @@
                 <li><a class="dropdown-item" href="/todo/list"><i class="fa fa-list"></i> To-Do List</a></li>
                 <li><a class="dropdown-item" href="/todo/add"><i class="fas fa-plus-circle"></i> Add a new Todo</a></li>
               </ul>
-            </li>            
-            <li class="nav-item">  
+            </li>                          
               <% if (typeof userName == 'string' && userName) { %>
-                <a class="nav-link" href="/users/signout" onclick="return confirm('Are you sure?')"><i class="fa fa-door-open"></i> Sign-Out (<%= userName %>)</a>
-              <% } else { %>
-                <a class="nav-link" href="/users/signin"><i class="fa fa-door-closed"></i> Sign-in</a>
-              <% } %>            
-            </li> 
+                <li class="nav-item"> 
+                  <a class="nav-link" href="/users/signout" onclick="return confirm('Are you sure?')"><i class="fa fa-door-open"></i> Sign-Out (<%= userName %>)</a>
+                </li> 
+              <% } else { %> 
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="/users" role="button" data-bs-toggle="dropdown">
+                      <i class="fa-solid fa-user-gear"></i>
+                      Account
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/users/signin"><i class="fa-solid fa-user"></i>Sign In</a></li>
+                      <li><a class="dropdown-item" href="/users/signup"><i class="fa-solid fa-user-plus"></i>Sign Up</a></li>
+                  </ul>
+                </li>
+             <% } %>   
           </ul>
         </div>
       </div>
