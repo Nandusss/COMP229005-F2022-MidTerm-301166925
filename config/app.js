@@ -1,3 +1,12 @@
+/* *
+ * app.js
+ * Nandagopan Dilip
+ * 301166925
+ * 29/10/2022
+ * all credits goes to prof. Júlio Vinícius Azevedo de Carvalho
+ */
+
+//modules
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -8,15 +17,17 @@ let session = require('express-session');
 let flash = require('connect-flash');
 let passport = require('passport');
 
+
 let app = express();
 
+//sessions
 app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: "sessionSecret"
 }));
 
-
+//routers
 let indexRouter = require('../routes/index');
 let usersRouter = require('../routes/users');
 let todoRouter = require('../routes/todo');
@@ -29,15 +40,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//root paths
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../node_modules')));
+app.use(express.static(path.join(__dirname, '../node_modules'))); 
 
 // Sets up passport
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+//routers initialized
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/todo', todoRouter);

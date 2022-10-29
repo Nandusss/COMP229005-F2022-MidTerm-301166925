@@ -1,3 +1,10 @@
+/* *
+ * user.js
+ * Nandagopan Dilip
+ * 301166925
+ * 29/10/2022
+ */
+
 let User = require('../models/user');
 let passport = require('passport');
 

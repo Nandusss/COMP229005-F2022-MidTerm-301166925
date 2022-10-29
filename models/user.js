@@ -1,3 +1,10 @@
+/* *
+ * user.js
+ * Nandagopan Dilip
+ * 301166925
+ * 29/10/2022
+ */
+
 let mongoose = require('mongoose');
 let crypto = require('crypto');
 let Schema = mongoose.Schema;
@@ -41,6 +48,7 @@ let UserSchema = mongoose.Schema(
     }
 );
 
+//getting the name from schema
 UserSchema.virtual('fullName')
 .get(function() {
     return this.firstName + ' ' + this.lastName;
@@ -59,14 +67,17 @@ UserSchema.pre('save', function(next) {
     next();
 });
 
+//encrypting the password.
 UserSchema.methods.hashPassword = function(password) {
     return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 
+//authenticate password
 UserSchema.methods.authenticate = function(password) {
     return this.password === this.hashPassword(password);
 };
 
+//check if the username is unique
 UserSchema.statics.findUniqueUsername = function(username, suffix,
     callback) {
     var possibleUsername = username + (suffix || '');

@@ -1,9 +1,17 @@
-// Do not expose your credentials in your code.
+/* *
+ * db.js
+ * Nandagopan Dilip
+ * 301166925
+ * 29/10/2022
+ */
+
+
 let atlasDB = "mongodb+srv://somebody:2ZJbMoJ5xcOW7Vvj@cluster0.7w7pf0q.mongodb.net/?retryWrites=true&w=majority";
 
 // Database setup
 let mongoose = require('mongoose');
 
+//mongoose connection initialization to database
 module.exports = function(){
 
     mongoose.connect(atlasDB);

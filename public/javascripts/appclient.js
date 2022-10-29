@@ -1,7 +1,14 @@
 // Filename: appclient.js
-// Student: Julio Vinicius
+// Professor: Julio Vinicius
 // StudentId: 123456789
 // Date: Jun 02, 2022
+
+/* *
+ * appclient.js
+ * Nandagopan Dilip
+ * 301166925
+ * 29/10/2022
+ */
 
 console.log('app script is working.');
 
