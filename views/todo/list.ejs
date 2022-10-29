@@ -9,7 +9,7 @@
             <!-- ------------------------ -->
             <!-- Fix the ADD button below -->
             <!-- ------------------------ -->
-            <a href="#" class="btn btn-primary" role="button">
+            <a href="/todo/add" class="btn btn-primary" role="button">
                 <i class="fas fa-plus-circle"></i> 
                 Add a new Todo
             </a> 
@@ -29,27 +29,27 @@
 
             <!-- Repeatable Template Row -->
 
-            <% for(let i = 0; i < TodoList.length; i++) { %>
+            <% for(let i = 0; i < todo.length; i++) { %>
                 <tr>
-                    <td class="text-center"><%= TodoList[i].task %></td>
-                    <td class="text-center"><%= TodoList[i].description %></td>
-                    <td class="text-center"><%= TodoList[i].complete %></td>                        
+                    <td class="text-center"><%= todo[i].task %></td>
+                    <td class="text-center"><%= todo[i].description %></td>
+                    <td class="text-center"><%= todo[i].complete %></td>                        
                     <td class="text-center">
-                        <a href="/todo/details/<%= TodoList[i]._id %>" class="btn btn-success btn-sm"> 
+                        <a href="/todo/details/<%= todo[i]._id %>" class="btn btn-success btn-sm"> 
                         <i class="fas fa-info"></i> </a>
                     </td>
                     <td class="text-center">
                         <!-- ------------------------- -->
                         <!-- Fix the EDIT button below -->
                         <!-- ------------------------- -->
-                        <a href="#" class="btn btn-primary btn-sm">
+                        <a href="/todo/edit/<%= todo[i]._id %>" class="btn btn-primary btn-sm">
                         <i class="fas fa-pencil-alt"></i></a>
                     </td>
                     <td class="text-center">
                         <!-- --------------------------- -->
                         <!-- Fix the DELETE button below -->
                         <!-- --------------------------- -->
-                        <a href="#" class="btn btn-danger btn-sm">
+                        <a href="/todo/delete/<%= todo[i]._id %>" class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>

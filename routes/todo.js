@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-let todoController = require('../controllers/todo');
+let todoController = require('../controllers/todos');
 
 // Helper function for guard purposes
 function requireAuth(req, res, next)
