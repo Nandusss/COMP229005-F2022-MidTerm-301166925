@@ -1,2 +1,2 @@
-# COMP229005-F2022-MidTerm-301166925
- COMP-229 MIdterm exam repo. 
+# COMP229.F2022.Midterm.Template
+ COMP229 F2022 Midterm Template
