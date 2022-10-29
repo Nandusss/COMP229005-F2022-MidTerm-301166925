@@ -21,7 +21,6 @@ module.exports.todoList = function(req, res, next) {
     });
 }
 
-
 // Gets a todo by id and renders the details page.
 module.exports.details = (req, res, next) => {
     
@@ -44,9 +43,8 @@ module.exports.details = (req, res, next) => {
     });
 }
 
-// Gets a todo by id and renders the Edit form using the add_edit.ejs template
+// Display the  add_edit page. Only provide access if signed in
 module.exports.displayEditPage = (req, res, next) => {
-    
     let id = req.params.id;
 
     TodoModel.findById(
@@ -76,15 +74,11 @@ module.exports.displayEditPage = (req, res, next) => {
             }
         }
     );
-
 }
 
 // Processes the data submitted from the Edit form to update a todo
 module.exports.processEditPage = (req, res, next) => {
-
     let id = req.params.id
-    
-    console.log(req.body);
 
     let updatedTodo = TodoModel({
         _id: req.body.id,
@@ -107,23 +101,15 @@ module.exports.processEditPage = (req, res, next) => {
             }
         }
     );
-
 }
 
-// Deletes a todo based on its id.
-module.exports.performDelete = (req, res, next) => {
-
-    // ADD YOUR CODE HERE
-
-}
-
-// Renders the Add form using the add_edit.ejs template
+// Display add_edit page. Only access if signed in
 module.exports.displayAddPage = (req, res, next) => {
     let todoList = TodoModel();
 
     // if (!req.user) {
-    //     res.render('todo/add_edit', {
-    //       title: 'Add List',
+    //     res.render('auth/signin', {
+    //       title: 'Sign In',
     //       messages: req.flash('error') || req.flash('info')
     //     });
     // } 
@@ -137,22 +123,60 @@ module.exports.displayAddPage = (req, res, next) => {
                 todo: todoList
             }
         )
-    // }                 
-
+    // }         
 }
 
-// Processes the data submitted from the Add form to create a new todo
+//perform a create function over database
 module.exports.processAddPage = (req, res, next) => {
-
-    console.log(req.body);
-
-    let newTodo = TodoModel({
+    let todoList = TodoModel({
         _id: req.body.id,
         task: req.body.task,
         description: req.body.description,
         complete: req.body.complete ? true : false
     });
 
-    // ADD YOUR CODE HERE
-    
+    TodoModel.create(
+        todoList, (err, item) =>{
+            if(err)
+            {
+                console.log(err);
+                res.end(err);
+            }
+            else
+            {
+                // refresh the contact list
+                console.log(item);
+                res.redirect('/todo/list');
+            }
+        }
+    );
+
+}
+
+//perform a delete fuction over database if user is signed in
+module.exports.performDelete = (req, res, next) => {
+    let id = req.params.id;
+    // if (!req.user) {
+    //     res.render('auth/signin', {
+    //       title: 'Sign In',
+    //       messages: req.flash('error') || req.flash('info')
+    //     });
+    // } 
+    // else 
+    // {
+        TodoModel.remove(
+            {_id: id}, (err) => {
+                if(err)
+                {
+                    console.log(err);
+                    res.end(err);
+                }
+                else
+                {
+                    // refresh the contact list
+                    res.redirect('/todo/list');
+                }
+            }
+        );
+    // }
 }
